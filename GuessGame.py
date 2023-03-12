@@ -16,22 +16,28 @@ def level(attempts):
         return 'Try more'
 
 print('Number Guessing Game')
-
 number = random.randint(1, 100)
 guess = None
 attempts = 0
 
 while guess != number:
-    if attempts > 10:
-        print('')
-    guess = int(input('Enter your guess(between 1 and 100): '))
+    if attempts >= MAX_ATTEMPTS:
+        print(f"You lose the game. ({attempts}/{MAX_ATTEMPTS})")
+        exit()
+        
+    try:
+        guess = int(input('Enter your guess(between 1 and 100): '))
+    except ValueError:
+        print('You should enter number (1-100).')
+        exit()
+
     attempts += 1
 
     if guess > number:
-        print(f"Guess a smaller number ({attempts}/10).")
+        print(f"Guess a smaller number ({attempts}/{MAX_ATTEMPTS}).")
     elif guess < number:
-        print(f"Guess a bigger number ({attempts}/10).")
+        print(f"Guess a bigger number ({attempts}/{MAX_ATTEMPTS}).")
     else:
         message = level(attempts)
-        print(f"{message}, You won after {attempts} tries.")
+        print(f"{message}, You win after {attempts} attempts.")
     print("-------------------------------------------\n")
