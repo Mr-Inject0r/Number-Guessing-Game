@@ -33,5 +33,5 @@ while guess != number:
         print(f"Guess a bigger number ({attempts}/10).")
     else:
         message = level(attempts)
-        print(f"{message}, You win after {attempts} attempts.")
+        print(f"{message}, You won after {attempts} tries.")
     print("-------------------------------------------\n")
